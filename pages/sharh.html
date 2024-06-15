@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="google-site-verification" content="Lt3ypD9fl6FgSWJsS_EPlorsG7kj5PCNg2ovH-3c4yA" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/all.min.css" />
+		<link rel="stylesheet" href="../css/style.css" />
+		<link rel="stylesheet" href="../css/normalize.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet">
+		<meta name="description"
+			content="الشبكة الجعفرية هي شبكة شيعية تهتم بنشر مواضيع متعلقة بالمذهب ورد الشبهات عنها." />
+		<meta property="og:title" content="الشبكة الجعفرية لنشر ما يتعلق بالمذهب ورد الشبهات عن التشيع." />
+		<meta property="og:type" content="website" />
+		<meta name="robots" content="index, follow">
+		<meta name="Keywords"
+			content="HTML, الجعفرية الشيعة, jaafaryia, shia, روايات شيعية, الشبكة الجعفرية, نشر التشيع" />
+		<title>الشبكة الجعفرية</title>
+
+		<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+			integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous">
+			</script>
+	</head>
+
+	<body id="body">
+		<script src="./main.js"></script>
+
+		<div class="researches-list" data-user-cards-container>
+			<template data-user-template>
+				<div class="research">
+					<div class="image" data-image>
+						<img src="" alt="IMAGE">
+					</div>
+					<div class="title" data-title>
+						<p></p>
+					</div>
+					<div class="description" data-description>
+						<p></p>
+					</div>
+					<div class="read" data-read>
+						<a href="">فتح الصفحة...</a>
+					</div>
+				</div>
+			</template>
+		</div>
+
+		<script>
+			const userCardTemplate = document.querySelector("[data-user-template]");
+			const userCardContainer = document.querySelector("[data-user-cards-container]");
+
+			let users = [];
+			// Array(data.length).fill(0).length
+			fetch("../assets/sharh.json")
+				.then((res) => res.json())
+				.then((data) => {
+					const a = data;
+					for (let i = 1; i < Object.keys(data).length + 1; i++) {
+						const card = userCardTemplate.content.cloneNode(true);
+						const image = card.querySelector("[data-image]");
+						const title = card.querySelector("[data-title]");
+						const description = card.querySelector("[data-description]");
+						const read = card.querySelector("[data-read]");
+						image.querySelector("img").src = data[`${i}`]["image"];
+						title.querySelector("p").textContent = data[`${i}`]["title"];
+						description.querySelector("p").textContent = data[`${i}`]["description"];
+						read.querySelector("a").href = data[`${i}`]["path"];
+						userCardContainer.append(card);
+					}
+				});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,44 @@
+<header id="header">
+    <div class="container">
+        <ul class="links" id="links">
+            <li class="link"><a href="/Web/Al-Jaafariyah/index.html">الصفحة الرئيسية</a>
+                <div class="line"></div>
+            </li>
+            <li class="link"><a href="/Web/Al-Jaafariyah/pages/sharh.html">شروحات</a>
+                <div class="line"></div>
+            </li>
+            <li class="link"><a href="/Web/Al-Jaafariyah/pages/researches.html">بحوث</a>
+                <div class="line"></div>
+            </li>
+            <li class="link"><a href="/Web/Al-Jaafariyah/pages/about.html">حول</a>
+                <div class="line"></div>
+            </li>
+        </ul>
+        <div class="name">
+            <p>الشبكة الجعفرية</p>
+        </div>
+    </div>
+</header>
+<script>
+    const links = document.getElementById("links");
+    const link = document.getElementsByClassName("link");
+    const line = document.getElementsByClassName("line");
+
+    Array.prototype.forEach.call(link, function (el) {
+        el.onmouseover = () => {
+            el.querySelector(".line").style.backgroundColor =
+                "var(--main-color-alt)";
+            el.querySelector(".line").style.width = "200%";
+            el.querySelector("a").style.color = "var(--main-color-alt)";
+        };
+        el.onmouseout = () => {
+            el.querySelector(".line").style.backgroundColor = "white";
+            el.querySelector(".line").style.width = "0";
+            el.querySelector("a").style.color = "black";
+        };
+
+        el.onclick = () => {
+            window.location.href = el.querySelector("a").href
+        }
+    });
+</script>
